@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(event) {
     // загрузка данных из хранилища
     let cart = JSON.parse(localStorage.getItem('card')) || []; 
-
+    let dataCart = document.querySelectorAll('[data-placement]');
+    
     // добавление товара в корзину
     function displayCart(cart){
         return cart.map(element => {
@@ -47,7 +48,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 imgSrc: card.querySelector('.d-block').getAttribute('src'),
                 title: card.querySelector('.card-title').innerText,
                 price: card.querySelector('.product-price').innerText,
-                qty: card.querySelector('.qty-text').value
+                qty: card.querySelector('.qty-text').value,
+                qty: 1
             }
 
             cart.push(productCard);
@@ -60,34 +62,34 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }, []);
             localStorage.setItem('card', JSON.stringify(res));
             displayCart(res);
-            window.location.href = 'https://max70453.github.io/furniture-js/cart.html';
-
+            window.location.href = 'http://127.0.0.1:5500/cart.html';
+            // event.preventDefault();
         }
+    });
 
         // клик на иконке корзины
-        if (event.target.hasAttribute('src')) {
-            const card = event.target.closest('.single-product-wrapper');
-            const productCard = {
-                imgSrc: card.querySelector('.product-img img').getAttribute('src'),
-                title: card.querySelector('.product-meta-data h6').innerText,
-                price: card.querySelector('.product-price').innerText,
-                qty: 1
-            }
-            
-            cart.push(productCard);
-            const res = cart.reduce((cart, i) => {
-                if (!cart.find(v => v.title == i.title)) {
-                cart.push(i);
+        dataCart.forEach(cartElement => {
+            cartElement.addEventListener('click', (event) => {
+                event.preventDefault();
+                const card = event.target.closest('.single-product-wrapper');
+                const productCard = {
+                    imgSrc: card.querySelector('.product-img img').getAttribute('src'),
+                    title: card.querySelector('.product-meta-data h6').innerText,
+                    price: card.querySelector('.product-price').innerText,
+                    qty: 1
                 }
-                return cart;
-            }, []);
-            localStorage.setItem('card', JSON.stringify(res));
-            displayCart(res);
-            event.preventDefault();
-            
-            window.location.href = 'https://max70453.github.io/furniture-js/cart.html';
-        }
-    
-    });
+                cart.push(productCard);
+                console.log(productCard);
+                const res = cart.reduce((cart, i) => {
+                    if (!cart.find(v => v.title == i.title)) {
+                    cart.push(i);
+                    }
+                    return cart;
+                }, []);
+                localStorage.setItem('card', JSON.stringify(res));
+                displayCart(res);
+                window.location.href = 'http://127.0.0.1:5500/cart.html';
+            });
+        });
     priceCalc();
 });

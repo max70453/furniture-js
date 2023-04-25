@@ -7,10 +7,18 @@ function priceCalc(){
         const price = element.querySelector('.price');
         const currentPrice = parseInt(amount.value) * parseInt(price.innerText);
         total += currentPrice;
+        localStorage.setItem('total', JSON.stringify(total));
     })
-    if(priceEl)
+    if(priceEl && cartItems != []){
         priceEl.innerText = total + ' p';
+    }
+    if(priceEl && cartItems){
+        total += JSON.parse(localStorage.getItem('total'));
+        priceEl.innerText =  total + ' p';
+    }
+         
+        
 }
 
-
+priceCalc();
 
