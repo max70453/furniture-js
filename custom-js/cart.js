@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }, []);
             localStorage.setItem('card', JSON.stringify(res));
             displayCart(res);
-            window.location.href = 'http://127.0.0.1:5500/cart.html';
+            window.location.href = 'https://max70453.github.io/cart.html';
             // event.preventDefault();
         }
     });
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 }, []);
                 localStorage.setItem('card', JSON.stringify(res));
                 displayCart(res);
-                window.location.href = 'http://127.0.0.1:5500/cart.html';
+                window.location.href = 'https://max70453.github.io/cart.html';
             });
         });
     priceCalc();
