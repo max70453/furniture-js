@@ -1,3 +1,10 @@
+import {products} from "./products.js";
+import { shop } from "./showShop.js";
+
+const name = new URLSearchParams(window.location.search).get('name')
+if(name){
+    shop(JSON.parse(localStorage.getItem('searchProducts')));
+}
 
 (function ($) {
     'use strict';
@@ -5,7 +12,6 @@
     var $window = $(window);
 
     // :: 1.0 Masonary Gallery Active Code
-
     var proCata = $('.amado-pro-catagory');
     var singleProCata = ".single-products-catagory";
 
@@ -26,7 +32,31 @@
     var searchClose = $('.search-close');
 
     amadoSearch.on('click', function () {
-        $('body').toggleClass('search-wrapper-on');
+        $('body').toggleClass('search-wrapper-on'); 
+        
+    let searchform = document.querySelector('.searchjs');
+
+    searchform.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let searchProducts = [];
+        const val = searchform.elements['search']; 
+
+        if(val.value){
+            products.forEach(product => {
+                if(product.name.toLowerCase().includes(val.value.toLowerCase()) ){
+                    searchProducts.push(product);
+                }
+            });
+        }
+
+        if(searchProducts.length > 0){
+            
+           
+        }localStorage.setItem('searchProducts', JSON.stringify(searchProducts)); window.location.assign(`http://127.0.0.1:5500/shop.html?name=${val.value}`);
+        val.value = '';
+        searchProducts = [];
+      });
+  
     });
 
     searchClose.on('click', function () {

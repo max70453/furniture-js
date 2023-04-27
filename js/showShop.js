@@ -7,8 +7,14 @@ export let shop = (products)=>{
 
     let shopProducts;
 
+    const name = new URLSearchParams(window.location.search).get('name')
     if(products.length < 1){
-        shopProducts = pr;
+        if(pr.length > 0){
+            shopProducts = pr;
+        }
+        else if(name){
+        shopProducts = JSON.parse(localStorage.getItem('searchProducts'));
+        }
     }
     else{
         shopProducts = products;
@@ -16,27 +22,23 @@ export let shop = (products)=>{
 
     let prodContainer = document.querySelector(".productsjs");
     const navigation = document.querySelector('.pagination');
-    document.addEventListener("DOMContentLoaded", () => {
-        let li = navigation.querySelector('li');
-        if(li)
-            li.classList.add('active');
-      });
-    
-
     let notesOnPage = 6;
     let start = 0;
     let end = notesOnPage;
     
-    
     prodContainer.innerHTML = '';
 
-    if(products.length > notesOnPage){
-        shopProducts = products.slice(start, end);
+    let newProducts = shopProducts;
+
+    if(shopProducts.length > notesOnPage){
+        newProducts = shopProducts.slice(start, end);
     }
     
-    let countPage = Math.ceil(products.length / notesOnPage);
+    let countPage = Math.ceil(shopProducts.length / notesOnPage);
     navigation.innerHTML = '';
-    for (let index = 0; index < countPage; index++) {
+
+    if(countPage > 1){
+        for (let index = 0; index < countPage; index++) {
         let li = `<li class="page-item"><a class="page-link" href="#">${index+1}</a></li>`;
         navigation.insertAdjacentHTML('beforeend', li);
     }
@@ -54,22 +56,31 @@ export let shop = (products)=>{
             let start = (pageNum -1) * notesOnPage;
             let end = start + notesOnPage;
     
-            let notes = products.slice(start, end);
+            let notes = shopProducts.slice(start, end);
             prodContainer.innerHTML = '';
             notes.forEach( product => prodContainer.innerHTML += renderShopProd(product) );
         });
     }
 
+    let li = document.querySelectorAll('.page-item');
+    li[0].classList.add('active');
+    }
+
     pr = shopProducts;
 
-    shopProducts.forEach((product)=>{
-        prodContainer.innerHTML += renderShopProd(product);
-    });
+    if(newProducts[0] != 'empty'){
+        newProducts.forEach((product)=>{
+            prodContainer.innerHTML += renderShopProd(product);
+        });
+    }
+    else{
+        prodContainer.innerHTML = `<div style="padding-left: 10%; font-size: 20px;"><strong>По Вашему запросу товаров не найдено</strong></div>`;
+    }
 }
 
 if(window.location.href === 'http://127.0.0.1:5500/shop.html'){
-    
+    shop(products);
 }
 
-shop(products);
+
 

@@ -22,6 +22,10 @@ menu.forEach( item => {
     item.addEventListener('click', () => {
         menuProducts = products;
         menuProducts = menuProducts.filter( product => product.furniture === item.dataset.menu);
+        window.history.pushState({}, document.title, window.location.pathname);
+        if(menuProducts.length < 1){
+            menuProducts.push('empty');
+        }
         shop(menuProducts);
     });
 })
@@ -52,7 +56,11 @@ $('.slider-range-price').each(function () {
 
 //filter
 filterBtn.addEventListener('click', ()=>{
+    const name = new URLSearchParams(window.location.search).get('name')
     let filteredProducts = menuProducts;
+    if(name){
+        filteredProducts = JSON.parse(localStorage.getItem('searchProducts'));
+    }
     let brands = document.querySelectorAll('.form-check-input');
     let colors = document.querySelectorAll('[data-color]');
 
@@ -74,7 +82,7 @@ filterBtn.addEventListener('click', ()=>{
       filteredProducts = filteredProducts.filter(item => filter.brands.includes(item.brand));  
     };
     if(filter.colors.length > 0){
-        filteredProducts = filteredProducts.filter(item => filter.colors.includes(item.color));
+        filteredProducts = filteredProducts.filter(item => filter.colors.includes(item.color.toLocaleLowerCase()));
     }
     if(filter.price.length > 0){
         filteredProducts = filteredProducts.filter(item => item.price >= filter.price[0] && item.price <= filter.price[1]);
@@ -83,10 +91,14 @@ filterBtn.addEventListener('click', ()=>{
     filter.brands = [];
     filter.colors = [];
     filter.price = [];
+
+    if(filteredProducts.length < 1){
+        filteredProducts.push('empty');
+    }
+    
     
     shop(filteredProducts);
 })
-
 
 const select = document.querySelector('.nice-select');
 select.addEventListener('click', event => {

@@ -13,7 +13,7 @@ function priceCalc(){
         priceEl.innerText = total + ' p';
     }
     if(priceEl && cartItems){
-        total += JSON.parse(localStorage.getItem('total'));
+        total = JSON.parse(localStorage.getItem('total'));
         priceEl.innerText =  total + ' p';
     }
          

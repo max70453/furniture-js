@@ -44,26 +44,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
     window.addEventListener('click', function(event){
         if (event.target.hasAttribute('data-cart')) { 
             const card = event.target.closest('.container-fluid');
-            const productCard = {
-                imgSrc: card.querySelector('.d-block').getAttribute('src'),
-                title: card.querySelector('.card-title').innerText,
-                price: card.querySelector('.product-price').innerText,
-                qty: card.querySelector('.qty-text').value,
-                qty: 1
-            }
-
-            cart.push(productCard);
-            // удаление дубликатов товара из массива cart
-            const res = cart.reduce((cart, i) => {
-                if (!cart.find(v => v.title == i.title)) {
-                cart.push(i);
+            if (card.querySelector('.qty-text').value != 0) {
+                const productCard = {
+                    imgSrc: card.querySelector('.d-block').getAttribute('src'),
+                    title: card.querySelector('.card-title').innerText,
+                    price: card.querySelector('.product-price').innerText,
+                    qty: card.querySelector('.qty-text').value,
                 }
-                return cart;
-            }, []);
-            localStorage.setItem('card', JSON.stringify(res));
-            displayCart(res);
-            window.location.href = 'http://127.0.0.1:5500/cart.html';
-            // event.preventDefault();
+                cart.push(productCard);            
+                // удаление дубликатов товара из массива cart
+                const res = cart.reduce((cart, i) => {
+                    if (!cart.find(v => v.title == i.title)) {
+                    cart.push(i);
+                    }
+                    return cart;
+                }, []);
+                localStorage.setItem('card', JSON.stringify(res));
+                displayCart(res);
+                window.location.href = 'http://127.0.0.1:5500/cart.html';
+            }
         }
     });
 
