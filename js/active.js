@@ -52,7 +52,8 @@ if(name){
         if(searchProducts.length > 0){
             
            
-        }localStorage.setItem('searchProducts', JSON.stringify(searchProducts)); window.location.assign(`https://max70453.github.io/shop.html?name=${val.value}`);
+        }localStorage.setItem('searchProducts', JSON.stringify(searchProducts)); 
+        window.location.assign(`https://max70453.github.io/furniture-js/shop.html?name=${val.value}`);
         val.value = '';
         searchProducts = [];
       });
