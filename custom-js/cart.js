@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 }, []);
                 localStorage.setItem('card', JSON.stringify(res));
                 displayCart(res);
-                window.location.href = 'https://max70453.github.io/cart.html';
+                window.location.href += '/cart.html';
             });
         });
     priceCalc();
