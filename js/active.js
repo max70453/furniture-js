@@ -53,7 +53,7 @@ if(name){
             
            
         }localStorage.setItem('searchProducts', JSON.stringify(searchProducts)); 
-        document.location.href.replace(location.hash , "" );
+//         document.location.href.replace(location.hash , "" );
         window.location.assign(`https://max70453.github.io/furniture-js/shop.html?name=${val.value}`);
 //         document.location.assign(location.hash , `https://max70453.github.io/furniture-js/shop.html?name=${val.value}` );
         val.value = '';
