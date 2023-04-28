@@ -88,7 +88,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 }, []);
                 localStorage.setItem('card', JSON.stringify(res));
                 displayCart(res);
-                window.location.href = 'https://max70453.github.io/furniture-js/cart.html';
+//                 window.location.href = 'https://max70453.github.io/furniture-js/cart.html';
+                document.location.href.replace(location.hash , "https://max70453.github.io/furniture-js/cart.html" );
             });
         });
     priceCalc();
