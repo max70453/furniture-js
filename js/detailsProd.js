@@ -24,11 +24,11 @@ let details = () => {
                         <ol class="carousel-indicators">
                             <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/product-img/${element.img[0]});">
                             </li>
-                            <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/product-img/${element.img[0]});">
+                            <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/product-img/${element.img[1]});">
                             </li>
-                            <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/product-img/${element.img[0]});">
+                            <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/product-img/${element.img[2]});">
                             </li>
-                            <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(img/product-img/${element.img[0]});">
+                            <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(img/product-img/${element.img[3]});">
                             </li>
                         </ol>
                         <div class="carousel-inner">
@@ -38,18 +38,18 @@ let details = () => {
                                 </a>
                             </div>
                             <div class="carousel-item">
-                                <a class="gallery_img" href="img/product-img/${element.img[0]}">
-                                    <img class="d-block w-100" src="img/product-img/${element.img[0]}" alt="Second slide">
+                                <a class="gallery_img" href="img/product-img/${element.img[1]}">
+                                    <img class="d-block w-100" src="img/product-img/${element.img[1]}" alt="Second slide">
                                 </a>
                             </div>
                             <div class="carousel-item">
-                                <a class="gallery_img" href="img/product-img/${element.img[0]}">
-                                    <img class="d-block w-100" src="img/product-img/${element.img[0]}" alt="Third slide">
+                                <a class="gallery_img" href="img/product-img/${element.img[2]}">
+                                    <img class="d-block w-100" src="img/product-img/${element.img[2]}" alt="Third slide">
                                 </a>
                             </div>
                             <div class="carousel-item">
-                                <a class="gallery_img" href="img/product-img/${element.img[0]}">
-                                    <img class="d-block w-100" src="img/product-img/${element.img[0]}" alt="Fourth slide">
+                                <a class="gallery_img" href="img/product-img/${element.img[3]}">
+                                    <img class="d-block w-100" src="img/product-img/${element.img[3]}" alt="Fourth slide">
                                 </a>
                             </div>
                         </div>

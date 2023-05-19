@@ -5,7 +5,7 @@ export let products = [
         descr: "Предмет мебели для сидения одного человека, с опорой для спины с подлокотниками или без них. Разграничение между стулом и креслом - комфортабельность изделия, рабочее кресло при этом может вовсе не отличаться от рабочего стула.",
         price: 1800,
         date: "10.01.2021",
-        img: ["bar-chair.jpg","bar-chair.jpg","bar-chair.jpg","bar-chair.jpg"],
+        img: ["orig1.jpg","orig2.jpg","orig3.jpg","orig4.jpg"],
         rating: 5,
         inStock: true,
         furniture: 'chair',
